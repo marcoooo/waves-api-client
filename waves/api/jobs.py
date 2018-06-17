@@ -16,13 +16,13 @@ class JobClient(CoreClient):
         self.auth_token(self.app_key)
         return self.client.get(self.base_url + "jobs")
 
-    def create(self, service_app_name, submission_app_name="default", inputs={}):
+    def create(self, service_app_name, submission_app_name, inputs):
         self.auth_token(self.app_key)
-        document = self.client.get(self.base_url + "openapi")
-        return self.client.action(document, ["services", "submissions_jobs_create"],
+        document = self.client.get(self.base_url + "schema")
+        return self.client.action(document, ["services", "submissions", "jobs", "create"],
                                   params={
-                                      "inputs": inputs,
-                                      "name": "Job Name",
+                                      "params": inputs,
+                                      "title": "Job Name",
                                       "service_app_name": service_app_name,
                                       "submission_app_name": submission_app_name
-                                  }, encoding="multipart/form-data")
+                                  }, encoding='multipart/form-data')

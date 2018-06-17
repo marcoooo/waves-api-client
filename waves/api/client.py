@@ -4,11 +4,11 @@ Base Api Client
 TODO: integrate OpenApiCodec
 """
 from coreapi import Client, auth
-from coreapi.codecs import JSONCodec
-from openapi_codec import OpenAPICodec
+from coreapi.codecs import JSONCodec, CoreJSONCodec
+
 
 class CoreClient(object):
-    decoders = [OpenAPICodec(), JSONCodec()]
+    decoders = [CoreJSONCodec(), JSONCodec()]
 
     def __init__(self, base_url) -> None:
         super().__init__()

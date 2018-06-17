@@ -41,9 +41,10 @@ class ServiceClient(CoreClient):
     def __init__(self, base_url) -> None:
         super().__init__(base_url)
 
-    def services(self):
-        services = self.client.get(self.base_url + "services")
-        return services
+    def list(self):
+        print(self.base_url + "schema")
+        services = self.client.get(self.base_url + "schema")
+        return self.client.action(services, ["services", "list"])
 
     def details(self, app_name):
         print(self.base_url + "services/" + app_name)
